@@ -41,3 +41,4 @@ int main(){
     }
 
 }
+//revised the question
