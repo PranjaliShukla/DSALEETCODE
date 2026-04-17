@@ -1,35 +1,20 @@
 class Solution {
 public:
-void valid(int n,int open,int close,string s,vector<string>&result){
-
-    if(open==n && close==n) {
-        result.push_back(s);
-        return;
+void generate(int n,int i,int j,vector<string>&ans,string s)
+{
+    if(i==n && j==n){
+        ans.push_back(s);
     }
-    if(open<n){
-    
-        valid(n,open+1,close,s+"(",result);
-
+    if(i<n){
+        generate(n,i+1,j,ans,s+"(");
     }
-    if(open>close){
-        
-        valid(n,open,close+1,s+")",result);
-
+    if(j<n && i>j){
+        generate(n,i,j+1,ans,s+")");
     }
-   
-
-
-
-
-}
-    vector<string> generateParenthesis(int n) {
-        vector<string>result;
-        string s="";
-
-       valid(n,0,0,s,result);
-       return result;
-        
-
+}    vector<string> generateParenthesis(int n) {
+    vector<string>ans;
+    generate(n,0,0,ans,"");
+    return ans;
         
     }
 };
