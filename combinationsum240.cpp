@@ -29,3 +29,34 @@ void sub(int i,int target,vector<int>&res,vector<vector<int>>&ans,vector<int>&ca
         
     }
 };
+//two codes
+class Solution {
+public:
+   void combination(int i,int n,vector<int>&res,vector<vector<int>>&ans,vector<int>&candidates,int target){
+    if(target==0){
+        ans.push_back(res);
+        return;
+    }
+    if(i>=n || target<0){
+        return;
+    }
+    res.push_back(candidates[i]);
+    combination(i+1,n,res,ans,candidates,target-candidates[i]);
+    res.pop_back();
+    while(i+1<n && candidates[i]==candidates[i+1]){
+        i++;
+    }
+    combination(i+1,n,res,ans,candidates,target);
+
+
+   }
+    vector<vector<int>> combinationSum2(vector<int>& candidates, int target) {
+        vector<vector<int>>ans;
+        vector<int>res;
+        sort(candidates.begin(),candidates.end());
+        combination(0,candidates.size(),res,ans,candidates,target);
+        return ans;
+
+        
+    }
+};
