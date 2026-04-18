@@ -1,23 +1,23 @@
 class Solution {
 public:
-void combi(int i,int n,vector<int>&res,int k,vector<vector<int>>&ans){
-    if(res.size()==k && n==0){
-        ans.push_back(res);
-        return;
+    void combination(int k,int i,int n,vector<int>&res,vector<vector<int>>&ans){
+        if(n==0 && res.size()==k){
+            ans.push_back(res);
+            return;
+        }
+        if(n<0 || res.size()>k || i>9){
+            return;
+        }
+        res.push_back(i);
+        combination(k,i+1,n-i,res,ans);
+        res.pop_back();
+        combination(k,i+1,n,res,ans);
+
     }
-    if(i>9 || n<0 || res.size()>k)return;
-
-    res.push_back(i);
-    combi(i+1,n-i,res,k,ans);
-    res.pop_back();
-    combi(i+1,n,res,k,ans);
-
-
-}
     vector<vector<int>> combinationSum3(int k, int n) {
         vector<int>res;
         vector<vector<int>>ans;
-        combi(1,n,res,k,ans);
+        combination(k,1,n,res,ans);
         return ans;
         
     }
