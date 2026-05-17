@@ -21,3 +21,28 @@ void subset(int i,int n,vector<int>&temp,vector<int>&nums,set<vector<int>>&ans){
         
     }
 };
+//method 2
+class Solution {
+public:
+void subset(int i,int n,vector<int>&nums,vector<int>&temp,vector<vector<int>>&ans){
+   
+        ans.push_back(temp);
+      
+    
+    for(int j=i;j<n;j++){
+        if(j>i && nums[j]==nums[j-1])continue;
+        temp.push_back(nums[j]);
+        subset(j+1,n,nums,temp,ans);
+        temp.pop_back();
+    }
+}
+    vector<vector<int>> subsetsWithDup(vector<int>& nums) {
+        int n=nums.size();
+        sort(nums.begin(),nums.end());
+        vector<int>temp;
+        vector<vector<int>>ans;
+        subset(0,n,nums,temp,ans);
+        return ans;
+        
+    }
+};
