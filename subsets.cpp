@@ -1,22 +1,19 @@
 class Solution {
 public:
-void sub(int i,int n,vector<int>&res,vector<vector<int>>&ans,vector<int>&nums){
-    if(i>=n){
-        ans.push_back(res);
+void subset(vector<int>&nums,int i,int n,vector<vector<int>>&ans,vector<int>&temp){
+    if(i==n){
+        ans.push_back(temp);
         return;
     }
-    res.push_back(nums[i]);
-    sub(i+1,n,res,ans,nums);
-    res.pop_back();
-    sub(i+1,n,res,ans,nums);
-
+    temp.push_back(nums[i]);
+    subset(nums,i+1,n,ans,temp);
+    temp.pop_back();
+    subset(nums,i+1,n,ans,temp);
 }
-
     vector<vector<int>> subsets(vector<int>& nums) {
-        int s=nums.size();
         vector<vector<int>>ans;
-        vector<int>res;
-        sub(0,s,res,ans,nums);
+        vector<int>temp;
+        subset(nums,0,nums.size(),ans,temp);
         return ans;
         
     }
