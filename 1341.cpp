@@ -1,0 +1,2 @@
+# Write your MySQL query statement below
+(select u.name as results from Users as u join MovieRating as m on u.user_id=m.user_id group by u.user_id ORDER BY COUNT(*) DESC ,u.name limit 1) UNION ALL (select o.title from Movies as o join MovieRating as m on o.movie_id=m.movie_id where created_at between'2020-02-01' and '2020-02-29' group by m.movie_id order by AVG(m.rating) desc,o.title limit 1 );
