@@ -1,23 +1,24 @@
 class Solution {
 public:
-    void combination(int k,int i,int n,vector<int>&res,vector<vector<int>>&ans){
-        if(n==0 && res.size()==k){
-            ans.push_back(res);
-            return;
-        }
-        if(n<0 || res.size()>k || i>9){
-            return;
-        }
-        res.push_back(i);
-        combination(k,i+1,n-i,res,ans);
-        res.pop_back();
-        combination(k,i+1,n,res,ans);
-
+void comb(vector<int>&temp,vector<vector<int>>&ans,int i,int n,int k){
+    if(temp.size()==k && n==0){
+        ans.push_back(temp);
+        return;
     }
+    if(i>9 ||n<0 ){
+        return;
+    }
+    temp.push_back(i);
+    comb(temp,ans,i+1,n-i,k);
+    temp.pop_back();
+    
+    comb(temp,ans,i+1,n,k);
+
+}
     vector<vector<int>> combinationSum3(int k, int n) {
-        vector<int>res;
+        vector<int>temp;
         vector<vector<int>>ans;
-        combination(k,1,n,res,ans);
+        comb(temp,ans,1,n,k);
         return ans;
         
     }
