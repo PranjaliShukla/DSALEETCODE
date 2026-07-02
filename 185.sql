@@ -1,0 +1,2 @@
+# Write your MySQL query statement below
+select d.name as Department,e.name as Employee,e.salary from (Select id,name,salary,departmentId,DENSE_RANK() OVER(PARTITION BY departmentId order by salary desc) as rnk from Employee )e join Department as d on e.departmentId=d.id where rnk<=3;
