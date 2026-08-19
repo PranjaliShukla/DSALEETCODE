@@ -15,7 +15,7 @@ void generate(int i,int j,int n,vector<string>&ans,string s){
     vector<string> generateParenthesis(int n) {
         vector<string>ans;
         generate(0,0,n,ans,"");
-        return ans;
+    
         
     }
 };
